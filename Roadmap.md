@@ -14,7 +14,7 @@ Why: Separation of concerns makes the app testable and easier to read.
 1.2: Local Database Setup (Drift/SQLite)
 What to do: Initialize the local SQLite database using the Drift package.
 How to do it:
-Add drift, sqlite3_flutter_libs, path_provider to 
+Add drift, sqlite3_flutter_libs, path_provider to
 pubspec.yaml
 .
 Create database.dart extending DriftDatabase.
@@ -27,7 +27,7 @@ How to do it:
 Create a backend/ folder.
 Create a virtual environment (python -m venv venv).
 Install fastapi and uvicorn.
-Create main.py with a simple "Hello World" root endpoint.
+Create main.py with a simple “Hello World” root endpoint.
 Why: Keeping the backend separate allows you to change optimization logic without redeploying the mobile app.
 Phase 2: Store Management System
 Goal: Allow users to create, read, update, and delete (CRUD) store data locally.
@@ -42,11 +42,11 @@ Create a StoreRepository abstract class and its implementation StoreRepositoryIm
 What to do: Extract coordinates from a shared Google Maps URL.
 How to do it:
 Create a regex utility or simple HTTP service.
-When a user pastes a link (https://goo.gl/maps/...), resolve the redirect to get the full URL.
+When a user pastes a link (https://goo.gl/maps/…), resolve the redirect to get the full URL.
 Regex extract !3d{LAT}!4d{LNG} or @{LAT},{LNG}.
 Why: Manual coordinate entry is error-prone; this automates it.
 2.3: Photo Handling
-What to do: Save images to the device's file system and store the path in the DB.
+What to do: Save images to the device’s file system and store the path in the DB.
 How to do it:
 Use image_picker package to capture/select photos.
 Use path_provider to find the App Document Directory.
@@ -56,9 +56,9 @@ Why: Storing images directly in SQLite bloats the database and slows queries.
 2.4: UI Implementation (Stores)
 What to do: Build the screens for listing and adding stores.
 How to do it:
-StoreListScreen: Use a StreamBuilder listening to Drift's watch stores.
+StoreListScreen: Use a StreamBuilder listening to Drift’s watch stores.
 AddStoreScreen: Form with validation. Use TextEditingController.
-StoreViewModel: Handle logic like "Save Store" which calls repository.addStore().
+StoreViewModel: Handle logic like “Save Store” which calls repository.addStore().
 Phase 3: Route Calculation Engine (The Brain)
 Goal: Connect the Flutter app to the Python backend to solve the Traveling Salesperson Problem (TSP).
 
@@ -66,7 +66,7 @@ Goal: Connect the Flutter app to the Python backend to solve the Traveling Sales
 What to do: Implement the logic to sort locations efficiently.
 How to do it:
 Use networkx or google-ortools in Python.
-Receive a JSON payload: {"start": {lat, lng}, "stores": [{id, lat, lng}, ...], "end": {lat, lng}}.
+Receive a JSON payload: {“start”: {lat, lng}, “stores”: [{id, lat, lng}, …], “end”: {lat, lng}}.
 Calculate a Distance Matrix (distance between every pair of points).
 Solve for the shortest path visiting all nodes.
 Return the ordered list of Store IDs.
@@ -75,13 +75,13 @@ What to do: Send data to backend and parse response.
 How to do it:
 Use http or dio package.
 Create OptimizationService.
-POST the selected stores to your local IP (e.g., 10.0.2.2 for Android emulator or your Mac's IP for iOS).
+POST the selected stores to your local IP (e.g., 10.0.2.2 for Android emulator or your Mac’s IP for iOS).
 Handle timeouts and offline errors gracefully.
 3.3: Route Builder UI
 What to do: A screen to select which stores to visit today.
 How to do it:
 Multi-select list from your saved stores.
-"Optimize" button triggers the API call.
+“Optimize” button triggers the API call.
 Loading state (spinner) while waiting for Python.
 Phase 4: Visualization & Navigation
 Goal: Show the result on a map and let the user drive/walk.
@@ -92,13 +92,13 @@ How to do it:
 Use google_maps_flutter or flutter_map (OpenStreetMap).
 Draw Markers for each store in the optimized list.
 Draw a Polyline connecting them in order.
-Label markers nicely (1, 2, 3...).
+Label markers nicely (1, 2, 3…).
 4.2: Navigation Actions
 What to do: One-click deep link to external navigation.
 How to do it:
 Use url_launcher.
 Format: google.navigation:q={lat},{lng} (Android) or comgooglemaps://?daddr={lat},{lng} (iOS).
-Provide a "GO" button next to each stop in the list.
+Provide a “GO” button next to each stop in the list.
 Phase 5: Saved Routes & Templates
 Goal: Save time by reusing common routes.
 
@@ -131,15 +131,15 @@ Phase 7: Statistics & Insights
 Goal: Gamify the experience and show value.
 
 7.1: Trip Logging
-What to do: Record when a trip is "Finished".
+What to do: Record when a trip is “Finished”.
 How to do it:
-Add a "Complete Route" button.
+Add a “Complete Route” button.
 Log entry in TripHistory table: date, storesVisitedCount, totalDistance.
 7.2: Dashboard UI
 What to do: Visual improvements.
 How to do it:
 Simple charts (using fl_chart) showing trips per week.
-"Best Time" records.
+“Best Time” records.
 Phase 8: Final Polishing & Release
 Goal: Make it feel like a pro app.
 

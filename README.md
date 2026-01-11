@@ -28,10 +28,10 @@ Role: Stateless computation microservice
 smart_route/
 ├── backend/           # Python FastAPI Server (Optimization Logic)
 └── lib/               # Flutter App Source
-    ├── core/          # Shared utilities & Failure definitions
-    ├── data/          # Repositories & Local Database
-    └── presentation/  # UI Views & ViewModels
+├── core/          # Shared utilities & Failure definitions
+├── data/          # Repositories & Local Database
+└── presentation/  # UI Views & ViewModels
 🏁 Getting Started
-Refer to the 
+Refer to the
 Roadmap
- for the Phase-by-Phase implementation guide.
+for the Phase-by-Phase implementation guide.
